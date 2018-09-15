@@ -1,0 +1,20 @@
+
+#Strip was not removing the " as the end of a string for some odd reason
+#I found the replace method and used it and it worked.
+
+#fopen = open('SLNSBOverlap5mile.txt')
+#contents = fopen.readlines()
+#fopen.close()
+
+missing=[]
+with open('SLNSBOverlap5mile.txt') as f:
+    next(f)
+    for line in f:
+        l1=line.split('\t')
+        sl = l1[2].replace('"','')
+        sl = sl.split(',')
+        nsb = l1[7].replace('"','')
+        nsb = nsb.split(',')
+        for i in nsb:
+            if i not in sl:
+                missing.append(i)
