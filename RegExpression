@@ -1,0 +1,16 @@
+#This script is used to remove the '"' double quote charaters from the list. I tried using a subsitute RE but just ended up using a 
+findall method.
+#re.findall first looks for a word character and a space greedy, then excludes a ' and " characters..
+
+# Youtube with tutorial. https://www.youtube.com/watch?v=K8L6KVGG-7o
+
+import re
+
+holding = [['"West Baton Rouge"', '22121', '13924361', 'null'], ['"McNairy"', '47109', '14511275', 'null'], ['"Tishomingo"', '28141', '14511275', 'null'], ['"Tippah"', '28139', '14511279', 3], ['"Webster"', '28155', '13805314', 'null']]
+        
+            
+
+for i in holding:
+    i = str(i)
+    x = re.findall('[\w ]+[^\'\"]', i)
+    print (x
