@@ -1,0 +1,10 @@
+import pandas as pd
+import geopandas as gpd
+from shapely.geometry import Point
+#from geopandas.tools import geocode
+from geopy.geocoders import GoogleV3 as goget
+fp=r'C:\Users\owen\coding\spacial\bokeh\exer3\address.txt'
+data =pd.read_csv(fp, sep=';',encoding='latin-1')
+key = 'AFEAFAEFAFAKEFAKEFAKE'
+geoit=goget(api_key=key)
+loc=goeit.geocode(data['address'],timeout=10)
