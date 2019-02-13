@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Feb 13 16:22:37 2019
+Plot point data
+@author: ow4253
+"""
+
+import geopandas as gp
+import pandas as pd
+from shapely.geometry import Point
+path = r'C:\Mapinfo files\RANStuff\MilitaryBases\IQIBaseInterior\carved\eglinIntNS.csv'
+eglin = pd.read_csv(path)
+# Uses .apply method and throw away lambda function to populate geometry column
+eglin['geometry'] = eglin.apply(lambda z: Point(z.sw_long, z.sw_lat), axis=1)
+geoEglin= gp.GeoDataFrame(eglin)
