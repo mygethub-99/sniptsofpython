@@ -11,5 +11,6 @@ from shapely.geometry import Point
 path = r'C:\Mapinfo files\RANStuff\MilitaryBases\IQIBaseInterior\carved\eglinIntNS.csv'
 eglin = pd.read_csv(path)
 # Uses .apply method and throw away lambda function to populate geometry column
+# axis defaults to 0, which is column, 1 is apply to each row
 eglin['geometry'] = eglin.apply(lambda z: Point(z.sw_long, z.sw_lat), axis=1)
 geoEglin= gp.GeoDataFrame(eglin)
