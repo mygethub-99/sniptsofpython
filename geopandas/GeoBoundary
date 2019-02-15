@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb  5 14:48:55 2019
+
+@author: ow4253
+"""
+import geopandas as gpd
+path = r'C:\Map....\.shp'
+filein = gpd.read_file(path)
+
+#Create a 2nd dataframe with the bounds of filein geometry
+df = gpd.GeoDataFrame(filein.bounds)
+
+df.to_csv(r'C:\Map...\.csv')
