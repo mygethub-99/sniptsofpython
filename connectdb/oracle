@@ -1,0 +1,17 @@
+"""
+Created on Fri Aug 16 08:21:42 2019
+Connect to oracle db
+@author: ow
+"""
+import cx_Oracle
+
+
+conn = cx_Oracle.connect(user ='loginID', password="password", dsn="hostname")
+
+cursor = conn.cursor()
+
+line = cursor.execute("select * from some table")
+row = cursor.fetchall()
+if row:
+    print(row)               
+conn.close()
