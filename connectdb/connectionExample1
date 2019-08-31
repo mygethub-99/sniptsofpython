@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Aug 30 08:21:42 2019
+Connect to oracle db
+@author: ow4253
+Uses Pandas read_sql to read query and include column headers in dataframe
+"""
+import cx_Oracle
+import pyodbc
+import pandas as pd
+
+#Connects to the Axiom DB using a Oracle Basic 32bit driver. 64bit Oracle would not work and throws an error
+conn = cx_Oracle.connect(user ='id', password="passwd", dsn="server")
+#conn.setencoding(encoding='utf-8')
+q = ("select distinct start_date, eutran_cell_fdd_id, freqband, earfcndl,\
+     dl_channel_bandwidth, administrative_state from AXIOM.PMCM_ERIC_LTE_EUTRANCELL\
+     where eutran_cell_fdd_id like 'ALL%'")
+axiom = pd.read_sql(q, conn)
+conn.close()
+            
+#Connects to a Vertica DB using a ODBC driver in Windows                      
+conn2 = pyodbc.connect(DSN="vert", UID="id", PWD= "passwd")
+q =("select region, market, zip, sw_lat lat, sw_long long FROM IQI_SUMMARY.iqi_mgrs10m_monthly_summary \
+    WHERE (iqi_mgrs10m_monthly_summary.yyyymm in ('201906','201907'))\
+    and sw_long >= (-86.524) and sw_long <= (-86.402) and sw_lat >= (31.362) and sw_lat <= (31.422)\
+    GROUP BY region, market, zip, sw_lat,sw_long ORDER BY zip limit 100")
+iqi = pd.read_sql(q, conn2)
+conn2.close()
