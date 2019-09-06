@@ -1,0 +1,6 @@
+Allows for using strings and dictionaries to plug in values for a statement
+
+How to create a variable and a value from a dictionary
+c={'one':1,'two':2}
+for k,v in c.items():
+    exec("%s=%s" % (k,v))
