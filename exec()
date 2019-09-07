@@ -5,13 +5,13 @@ c={'one':1,'two':2}
 for k,v in c.items():
     exec("%s=%s" % (k,v))
     
-#This methond breaks if you do this
+#This methond breaks if you do this, trying to pass a string as a value.
 c={'one':'two','two':'three'}
 for k,v in c.items():
     exec("%s=%s" % (k,v))
     
 #NameError: name 'three' is not defined
-#add single quote 
+#add single quote to the %s and it formats the place holder for a string and works.
     exec("%s='%s'" % (k,v))
     
 #.format method also works.
